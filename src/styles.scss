@@ -1,0 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Text&display=swap');
+
+html, body, #app, .recipes {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: 'Crimson Text', serif;
+}
+
+body {
+  background-color: #424242;
+  color: white;
+}
+
+.recipe, .library {
+  position: relative;
+}
