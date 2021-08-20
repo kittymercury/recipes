@@ -1,25 +1,149 @@
 import React from 'react';
+import TextareaAutosize from 'react-textarea-autosize';
 
 import './styles.scss';
 
 export default class Recipe extends React.Component {
-  render() {
-    const { recipes, recipeId, isInputVisible } = this.props;
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      title: '',
+      ingredients: '',
+      procedure: '',
+      isEditMode: this.props.isEditMode // check it out
+    }
+  }
+
+  handleChange = (name, e) => {
+    this.setState({ [name]: e.target.value })
+  }
+
+  clickDone = () => {
+    const { recipes, recipeId } = this.props;
+    const { title, ingredients, procedure, isEditMode } = this.state;
+    const currentRecipe = recipes.find((recipe) => recipe.id === recipeId);
+    const updatedRecipe = {
+      id: currentRecipe.id,
+      name: title,
+      ingredients: ingredients.split('\n'),
+      procedure: procedure.split('\n')
+    }
+    const indexOfRecipe = recipes.indexOf(currentRecipe);
+    recipes.splice(indexOfRecipe, 1, updatedRecipe);
+
+    this.setState({ isEditMode: false, recipes: recipes });
+  }
+
+  clickEdit = () => {
+    const { recipes, recipeId } = this.props;
+    const recipe = recipes.find((r) => r.id === recipeId);
+    let textIngredients = recipe.ingredients.join('\n');
+    let textProcedure = recipe.procedure.join('\n');
+
+    this.setState({
+      isEditMode: true,
+      ingredients: textIngredients,
+      procedure: textProcedure,
+      title: recipe.name
+    });
+  }
+
+  renderButtonEdit = (condition) => {
+    if (condition) {
+      return (
+        <div className="button">
+          <button className="done" onClick={this.clickDone}>Done</button>
+        </div>
+      )
+    } else {
+      return (
+        <div className="button">
+          <button className="edit" onClick={this.clickEdit}>Edit</button>
+        </div>
+      )
+    }
+  }
+
+  renderTitle = (condition) => {
+    const { recipes, recipeId } = this.props;
     const recipe = recipes.find((r) => r.id === recipeId);
 
+    if (condition) {
+      return (
+        <div className="title">
+          <TextareaAutosize
+            defaultValue={recipe.name}
+            autoFocus
+            id="title"
+            name="title"
+            onChange={(e) => this.handleChange('title', e)}
+          />
+        </div>
+      )
+    } else {
+      return <div className="title">{recipe.name}</div>
+    }
+  }
+
+  renderContent = (condition) => {
+    const { recipes, recipeId } = this.props;
+    const { ingredients, procedure } = this.state;
+    const recipe = recipes.find((r) => r.id === recipeId);
+    let contentIngredients = recipe.ingredients.map((ingredientItem) => {
+      return <div id="item" key={`i-${recipe.ingredients.indexOf(ingredientItem)}`}>{ingredientItem}</div>
+    });
+    let contentProcedure = recipe.procedure.map((procedureItem) => {
+      return <div id="item" key={`p-${recipe.procedure.indexOf(procedureItem)}`}>{procedureItem}</div>
+    });
+
+    if (condition) {
+      return (
+        <div className="dynamic">
+          <label htmlFor="ingredients">Ingredients</label>
+          <TextareaAutosize
+            defaultValue={recipe.ingredients.join('\n')}
+            id="ingredients"
+            name="ingredients"
+            onChange={(e) => this.handleChange('ingredients', e)}
+          />
+
+          <label htmlFor="procedure">Instruction</label>
+          <TextareaAutosize
+            defaultValue={recipe.procedure.join('\n')}
+            id="procedure"
+            name="procedure"
+            onChange={(e) => this.handleChange('procedure', e)}
+          />
+          {/* <textarea id="procedure" name="procedure" rows="8" cols="40" onChange={(e) => this.handleChange('procedure', e)}>
+            {procedure}
+          </textarea> */}
+        </div>
+      )
+    } else {
+      return (
+        <div className="static">
+          <div className="ingredients">
+            <div className="area-name">Ingredients</div>
+            <div className="container">{contentIngredients}</div>
+          </div>
+          <div className="procedure">
+            <div className="area-name">Instruction</div>
+            <div className="container">{contentProcedure}</div>
+          </div>
+        </div>
+      )
+    }
+  }
+
+  render() {
+    const { isEditMode } = this.state;
 
     return (
       <div className="recipe">
-        <div className="ingredients">
-          {recipe.ingredients.map((ingr) => {
-            return <div>{ingr}</div>
-          })}
-        </div>
-        <div className="instruction">
-          {recipe.instruction.map((instr) => {
-            return <div>{instr}</div>
-          })}
-        </div>
+        {this.renderButtonEdit(isEditMode)}
+        {this.renderTitle(isEditMode)}
+        {this.renderContent(isEditMode)}
       </div>
     );
   }

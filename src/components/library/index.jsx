@@ -1,12 +1,11 @@
 import React from 'react';
 
 import './styles.scss';
-import Recipe from '../recipe';
 
 export default class Library extends React.Component {
 
   render() {
-    const { view, recipes, isInputVisible } = this.props;
+    const { view, recipes } = this.props;
 
     return (
       <div className="library">

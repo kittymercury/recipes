@@ -1,0 +1,95 @@
+.recipe {
+  height: 100%;
+  width: 100%;
+  flex: 1;
+  color: white;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+
+  .title, #title {
+    margin: 0;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    letter-spacing: 1px;
+
+    #title {
+      font-size: 17px;
+      padding: 0 10px;
+    }
+  }
+}
+
+.dynamic,
+.static,
+.static div {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+
+
+.container {
+  max-width: fit-content;
+
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+label,
+textarea,
+.area-name,
+.container {
+  margin-top: 20px;
+  font-size: .8rem;
+  letter-spacing: 1px;
+}
+
+label,
+.area-name {
+  text-align: center;
+}
+
+textarea {
+    max-height: fit-content;
+    max-width: 100%;
+    line-height: 1.5;
+    font-family: inherit;
+    padding: 10px;
+    border: none;
+    resize: none;
+    outline: none;
+    background: none;
+    color: white;
+}
+
+.container {
+  line-height: 1.5;
+  padding: 10px;
+  max-width: 100%;
+}
+
+label,
+.area-name {
+  color: white;
+  text-align: center;
+}
+
+.button {
+  width: 90%;
+  font-family: inherit;
+
+  display: flex;
+  justify-content: flex-end;
+
+  button {
+    border: none;
+    background: none;
+    padding: 10px;
+    cursor: pointer;
+  }
+}
