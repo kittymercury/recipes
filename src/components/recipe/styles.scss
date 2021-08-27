@@ -2,24 +2,27 @@
   height: 100%;
   width: 100%;
   flex: 1;
-  color: white;
 
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
 
   .title, #title {
+    text-decoration: underline;
+    line-height: 47px;
     margin: 0;
     font-size: 20px;
     font-weight: bold;
     text-align: center;
     letter-spacing: 1px;
+  }
 
     #title {
-      font-size: 17px;
-      padding: 0 10px;
+      line-height: 28px;
+      text-decoration: none;
+      padding: 0;
+      vertical-align: text-bottom;
     }
-  }
 }
 
 .dynamic,
@@ -28,6 +31,10 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+}
+
+.dynamic, .static {
+  padding: 0 10px 15px;
 }
 
 
@@ -52,44 +59,55 @@ textarea,
 label,
 .area-name {
   text-align: center;
+  font-size: 17px;
 }
 
 textarea {
     max-height: fit-content;
     max-width: 100%;
-    line-height: 1.5;
-    font-family: inherit;
+    line-height: 2;
     padding: 10px;
+    background: none;
     border: none;
+    font-family: inherit;
     resize: none;
     outline: none;
-    background: none;
-    color: white;
 }
 
 .container {
-  line-height: 1.5;
-  padding: 10px;
+  line-height: 2;
   max-width: 100%;
+  padding: 10px;
 }
 
 label,
 .area-name {
-  color: white;
   text-align: center;
 }
 
 .button {
-  width: 90%;
   font-family: inherit;
 
   display: flex;
   justify-content: flex-end;
 
   button {
-    border: none;
+    margin-right: 10px;
     background: none;
+    border: none;
+    cursor: pointer;
+  }
+}
+
+.recipe .control {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+
+  div {
+    width: 30px;
     padding: 10px;
+    text-align: center;
     cursor: pointer;
   }
 }

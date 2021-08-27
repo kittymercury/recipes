@@ -1,23 +1,69 @@
 .library {
-  padding: 5px;
+  height: 100%;
   font-size: 1rem;
+  position: relative;
+  color: white;
+  background: url(https://us.123rf.com/450wm/zhemchuzhina/zhemchuzhina1509/zhemchuzhina150900006/44465417-stock-vector-food-and-drink-outline-seamless-pattern-hand-drawn-kitchen-background-in-black-and-white-vector-illu.jpg?ver=6);
 
   display: flex;
   flex-direction: column;
 
-  .item {
-    margin: 10px;
-    padding: 10px;
+  &:before {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    content: '';
+    position: absolute;
+    background: linear-gradient(to bottom, #090019, #714900c9);
+  }
+
+  .header {
+    height: 60px;
+    width: 60px;
     cursor: pointer;
-    box-shadow: inset 0 -1px 0px 0px #ffffff21;
+    z-index: 10;
+    position: fixed;
 
     display: flex;
     align-items: center;
 
-    .icon .far {
-      margin-right: 8px;
-      padding: 3px;
-      font-size: 35px;
+    span {
+      padding: 10px;
+      font-size: 25px;
+      font-weight: bold;
+    }
+
+    .fas.fa-bars {
+      padding: 22px;
+      font-size: 18px;
+    }
+  }
+
+  .list {
+    height: 100%;
+    margin-top: 60px;
+    padding: 10px 20px;
+    z-index: 1;
+
+    .item {
+      margin: 10px;
+      padding: 10px;
+      cursor: pointer;
+      box-shadow: inset 0 -1px 0px 0px #ffffff21;
+
+      display: flex;
+      align-items: center;
+
+      .name {
+        font-size: 20px;
+      }
+
+      .icon .far {
+        margin-right: 8px;
+        padding: 3px;
+        font-size: 35px;
+      }
     }
   }
 }

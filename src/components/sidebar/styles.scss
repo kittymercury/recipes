@@ -1,0 +1,122 @@
+$rainbow: linear-gradient(90deg,
+rgba(255,55,0,1) 2%,
+rgba(255,124,0,1) 6%,
+rgba(255,171,0,1) 11%,
+rgba(255,205,0,1) 17%,
+rgba(255,248,0,1) 22%,
+rgba(203,251,0,1) 29%,
+rgba(86,255,0,1) 35%,
+rgba(0,255,128,1) 43%,
+rgba(0,255,252,1) 51%,
+rgba(0,226,253,1) 55%,
+rgba(0,188,254,1) 59%,
+rgba(0,129,255,1) 67%,
+rgba(0,91,255,1) 73%,
+rgba(115,0,255,1) 80%,
+rgba(149,0,255,1) 87%,
+rgba(187,0,243,1) 93%,
+rgba(255,0,228,1) 100%);
+
+.sidebar-wrapper .overlay {
+  width: 100%;
+  opacity: 0;
+  transform: scale(0);
+  background: #ff80001a;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 21;
+  transition: all .3s ease-in-out 0s;
+  }
+
+.sidebar-wrapper .sidebar {
+  height: 100%;
+  width: 80%;
+  background: #fff;
+  transform: translateX(-100%);
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 31;
+  transition: all .3s ease-in-out 0s;
+
+  display: flex;
+  flex-direction: column;
+
+  .menu-icon {
+    height: 60px;
+    background-color: #484154;
+    color: white;
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+
+    span {
+      font-size: 24px;
+      font-weight: bold;
+      flex: 1;
+    }
+
+    i {
+      padding: 20px;
+      font-size: 18px;
+    }
+  }
+}
+
+.sidebar-wrapper .sidebar .submenu {
+  height: 100%;
+  background-color: white;
+
+  display: flex;
+  flex-direction: column;
+
+  &:before {
+    content: "";
+    display: block;
+    position: absolute;
+    background-image: $rainbow;
+    height: 2px;
+    width: 100%;
+  }
+
+  .submenu-item {
+    height: 60px;
+    width: 100%;
+    color: black;
+    font-size: 19px;
+    box-shadow: inset 0 -1px 2px 0px #cca3324d;
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+
+    &:hover {
+      background-color: #ffdb7633;
+      box-shadow: none;
+    }
+
+    i {
+      margin: 0 10px 0 20px;
+      color: coral;
+      font-size: 15px;
+    }
+  }
+}
+
+.active .overlay {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.active .sidebar {
+  transform: translateX(0);
+
+  .menu-icon {
+    width: 100%;
+  }
+}

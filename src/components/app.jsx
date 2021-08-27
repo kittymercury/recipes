@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Control from './control';
+// import Control from './control';
 import Library from './library';
 import Recipe from './recipe';
 
@@ -13,7 +13,6 @@ export default class App extends React.Component {
     super(props);
 
     this.state = {
-      view: 'list', // or gallery
       recipeId: null,
       recipes: [
         { id: 1,
@@ -32,7 +31,8 @@ export default class App extends React.Component {
           procedure: ['roast', 'grind', 'mix']
         }
       ],
-      isEditMode: false
+      isEditMode: false,
+      isMenuActive: false
     }
   }
 
@@ -42,21 +42,13 @@ export default class App extends React.Component {
   }
 
   // control
-  handleClickHome = () => {
+  handleClickBack = () => {
     this.setState({ recipeId: null, isEditMode: false });
   }
 
   // handleClickAdd = () => {
   //   this.setState({ isInputVisible: true });
   // }
-
-  handleClickDone = () => {
-    this.setState({ isEditMode: false });
-  }
-
-  handleClickEdit = () => {
-    this.setState({ isEditMode: true });
-  }
 
   // input
   // handleClickPost = () => {
@@ -86,16 +78,17 @@ export default class App extends React.Component {
 
   renderPage = (condition) => {
     const {
-      view,
       recipeId,
       recipes,
-      isInputVisible,
+      isMenuActive,
       isEditMode
     } = this.state;
 
     if (condition) {
       return (
         <Recipe
+          isMenuActive={isMenuActive}
+          clickBack={this.handleClickBack}
           recipes={recipes}
           recipeId={recipeId}
           isEditMode={isEditMode}
@@ -104,7 +97,7 @@ export default class App extends React.Component {
     } else {
       return (
         <Library
-          view={view}
+          isMenuActive={isMenuActive}
           recipes={recipes}
           onClick={this.handleClickItem}
         />
@@ -113,18 +106,10 @@ export default class App extends React.Component {
   }
 
   render() {
-    const { view, recipeId, recipes, isEditMode } = this.state;
+    const { recipeId, recipes, isEditMode, isMenuActive } = this.state;
 
     return (
       <div className="recipes">
-        <Control
-          recipeId={recipeId}
-          isEditMode={isEditMode}
-          onHome={this.handleClickHome}
-          onAdd={this.handleClickAdd}
-          onDone={this.handleClickDone}
-          onEdit={this.handleClickEdit}
-        />
         {this.renderPage(recipeId)}
       </div>
     );

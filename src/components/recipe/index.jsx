@@ -11,7 +11,7 @@ export default class Recipe extends React.Component {
       title: '',
       ingredients: '',
       procedure: '',
-      isEditMode: this.props.isEditMode // check it out
+      isEditMode: this.props.isEditMode
     }
   }
 
@@ -49,17 +49,28 @@ export default class Recipe extends React.Component {
     });
   }
 
+  renderControl = (condition) => {
+    return (
+      <div className="control">
+        <div className="back" onClick={this.props.clickBack}>
+          <i className="fas fa-arrow-left"></i>
+        </div>
+        {this.renderButtonEdit(condition)}
+      </div>
+    )
+  }
+
   renderButtonEdit = (condition) => {
     if (condition) {
       return (
-        <div className="button">
-          <button className="done" onClick={this.clickDone}>Done</button>
+        <div className="done" onClick={this.clickDone}>
+          <i className="fas fa-check"></i>
         </div>
       )
     } else {
       return (
-        <div className="button">
-          <button className="edit" onClick={this.clickEdit}>Edit</button>
+        <div className="edit" onClick={this.clickEdit}>
+          <i className="fas fa-pen-fancy"></i>
         </div>
       )
     }
@@ -107,7 +118,6 @@ export default class Recipe extends React.Component {
             name="ingredients"
             onChange={(e) => this.handleChange('ingredients', e)}
           />
-
           <label htmlFor="procedure">Instruction</label>
           <TextareaAutosize
             defaultValue={recipe.procedure.join('\n')}
@@ -115,9 +125,6 @@ export default class Recipe extends React.Component {
             name="procedure"
             onChange={(e) => this.handleChange('procedure', e)}
           />
-          {/* <textarea id="procedure" name="procedure" rows="8" cols="40" onChange={(e) => this.handleChange('procedure', e)}>
-            {procedure}
-          </textarea> */}
         </div>
       )
     } else {
@@ -141,7 +148,7 @@ export default class Recipe extends React.Component {
 
     return (
       <div className="recipe">
-        {this.renderButtonEdit(isEditMode)}
+        {this.renderControl(isEditMode)}
         {this.renderTitle(isEditMode)}
         {this.renderContent(isEditMode)}
       </div>
