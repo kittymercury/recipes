@@ -1,20 +1,34 @@
+@import url('https://fonts.googleapis.com/css2?family=Playball&display=swap');
+
 .recipe {
-  height: 100%;
   width: 100%;
   flex: 1;
+  color: white;
 
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
 
+  &:before {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    content: '';
+    position: absolute;
+    background: #0f051be8;
+  }
+
   .title, #title {
     text-decoration: underline;
     line-height: 47px;
-    margin: 0;
-    font-size: 20px;
+    margin: 10px 0;
+    font-size: 30px;
     font-weight: bold;
     text-align: center;
     letter-spacing: 1px;
+    font-family: 'Playball', cursive;
+    z-index: 10;
   }
 
     #title {
@@ -37,8 +51,6 @@
   padding: 0 10px 15px;
 }
 
-
-
 .container {
   max-width: fit-content;
 
@@ -47,13 +59,18 @@
   align-items: stretch;
 }
 
+label, .ingredients, .prodecure {
+  margin-top: 10px;
+}
+
 label,
 textarea,
 .area-name,
 .container {
-  margin-top: 20px;
-  font-size: .8rem;
+  font-size: 16px;
   letter-spacing: 1px;
+  z-index: 10;
+  color: white;
 }
 
 label,
@@ -100,14 +117,19 @@ label,
 }
 
 .recipe .control {
+  background-color: #0f051b;
+  z-index: 10;
+
   display: flex;
   justify-content: space-between;
   align-items: stretch;
 
   div {
-    width: 30px;
-    padding: 10px;
-    text-align: center;
-    cursor: pointer;
+    height: 60px;
+    width: 60px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }

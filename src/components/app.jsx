@@ -1,19 +1,14 @@
 import React from 'react';
 
-// import Control from './control';
 import Library from './library';
 import Recipe from './recipe';
-
-// TODO: textarea for 2 areas in Recipe (div onclick -> textarea)
-// TODO: search better style for Control (dropdown menu or sidebar)
-
 
 export default class App extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      recipeId: null,
+      recipeId: 1,
       recipes: [
         { id: 1,
           name: 'Lasagne',
