@@ -4,7 +4,7 @@ import './styles.scss';
 
 export default class Sidebar extends React.Component {
   render() {
-    const { isMenuActive, onCloseSidebar } = this.props;
+    const { isMenuActive, onCloseSidebar, onOpenPopUp } = this.props;
 
     return (
       <div className={`sidebar-wrapper ${isMenuActive ? 'active' : ''}`}>
@@ -15,9 +15,9 @@ export default class Sidebar extends React.Component {
             <span>Menu</span>
           </div>
           <div className="submenu">
-            <div className="submenu-item">
-              <i className="fas fa-home"></i>
-              <span>Home</span>
+            <div className="submenu-item" onClick={onOpenPopUp}>
+              <i className="fas fa-plus"></i>
+              <span>New recipe</span>
             </div>
             <div className="submenu-item">
               <i className="fas fa-pen"></i>
@@ -25,7 +25,7 @@ export default class Sidebar extends React.Component {
             </div>
             <div className="submenu-item">
               <i className="far fa-eye"></i>
-              <span>Page view</span>
+              <span>View</span>
             </div>
           </div>
         </div>

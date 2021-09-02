@@ -1,0 +1,41 @@
+.pop-up {
+  min-height: 120px;
+  padding: 17px 15px 7px;
+  background-color: coral;
+  border-top: 17px solid darkolivegreen;
+  position: fixed;
+  z-index: 100;
+  bottom: 50%;
+  left: 50%;
+  transform: translate(-50%);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+
+  div {
+    width: 100%;
+    padding: 7px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+    textarea {
+      padding: 0;
+      background-color: gray;
+    }
+
+    i.fa-folder {
+      font-size: 25px;
+    }
+
+    button {
+      background: none;
+      border: none;
+      font-size: 20px;
+      cursor: pointer;
+    }
+  }
+}

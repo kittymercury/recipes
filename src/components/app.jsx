@@ -2,13 +2,14 @@ import React from 'react';
 
 import Library from './library';
 import Recipe from './recipe';
+import PopUp from './popup';
 
 export default class App extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      recipeId: 1,
+      recipeId: null,
       recipes: [
         { id: 1,
           name: 'Lasagne',
@@ -27,7 +28,8 @@ export default class App extends React.Component {
         }
       ],
       isEditMode: false,
-      isMenuActive: false
+      isMenuActive: false,
+      popUp: null
     }
   }
 
@@ -39,6 +41,10 @@ export default class App extends React.Component {
   // control
   handleClickBack = () => {
     this.setState({ recipeId: null, isEditMode: false });
+  }
+
+  handleOpenPopUp = () => {
+    this.setState({ popUp });
   }
 
   // handleClickAdd = () => {
@@ -95,16 +101,18 @@ export default class App extends React.Component {
           isMenuActive={isMenuActive}
           recipes={recipes}
           onClick={this.handleClickItem}
+          onOpenPopUp={this.handleOpenPopUp}
         />
       )
     }
   }
 
   render() {
-    const { recipeId, recipes, isEditMode, isMenuActive } = this.state;
+    const { recipeId, recipes, isEditMode, isMenuActive, popUp } = this.state;
 
     return (
       <div className="recipes">
+        <PopUp />
         {this.renderPage(recipeId)}
       </div>
     );
