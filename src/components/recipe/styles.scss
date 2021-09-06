@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Playball&display=swap');
 
 .recipe {
+  height: 100%;
   width: 100%;
   flex: 1;
   color: white;
@@ -9,34 +10,28 @@
   flex-direction: column;
   justify-content: flex-start;
 
-  &:before {
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    content: '';
-    position: absolute;
-    background: #0f051be8;
-  }
+  .content {
+    height: calc(100% - 60px);
+    background-color: #0f051be8;
+    overflow-y: auto;
 
-  .title, #title {
-    text-decoration: underline;
-    line-height: 47px;
-    margin: 10px 0;
-    font-size: 30px;
-    font-weight: bold;
-    text-align: center;
-    letter-spacing: 1px;
-    font-family: 'Playball', cursive;
-    z-index: 10;
-  }
-
-    #title {
-      line-height: 28px;
-      text-decoration: none;
-      padding: 0;
-      vertical-align: text-bottom;
+    .title, #title {
+      text-decoration: underline;
+      margin: 10px 0;
+      font-size: 26px;
+      font-weight: bold;
+      text-align: center;
+      letter-spacing: 1px;
+      font-family: 'Playball', cursive;
     }
+
+      #title {
+        margin: 0;
+        padding: 0;
+        text-decoration: none;
+        vertical-align: text-bottom;
+      }
+  }
 }
 
 .dynamic,
@@ -69,7 +64,7 @@ textarea,
 .container {
   font-size: 16px;
   letter-spacing: 1px;
-  z-index: 10;
+  // z-index: 10;
   color: white;
 }
 
@@ -117,8 +112,9 @@ label,
 }
 
 .recipe .control {
+  height: 60px;
   background-color: #0f051b;
-  z-index: 10;
+  // z-index: 10;
 
   display: flex;
   justify-content: space-between;

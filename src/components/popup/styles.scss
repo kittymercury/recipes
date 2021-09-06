@@ -1,18 +1,19 @@
 .pop-up {
-  min-height: 120px;
-  padding: 17px 15px 7px;
-  background-color: coral;
-  border-top: 17px solid darkolivegreen;
+  min-height: 100px;
+  padding: 17px 15px 5px;
+  background-color: #3d2b4e;
+  color: white;
+  border-top: 24px solid #21141f;
   position: fixed;
   z-index: 100;
-  bottom: 50%;
+  bottom: 45%;
   left: 50%;
   transform: translate(-50%);
 
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: flex-end;
 
   div {
     width: 100%;
@@ -22,9 +23,18 @@
     align-items: center;
     justify-content: space-around;
 
-    textarea {
-      padding: 0;
-      background-color: gray;
+    &:nth-child(2) {
+      margin-top: 10px;
+    }
+
+    input {
+      padding: 5px 0 3px 8px;
+      color: white;
+      font-size: 17px;
+      background: none;
+      border: none;
+      outline: none;
+      border-bottom: 1px solid white;
     }
 
     i.fa-folder {
@@ -36,6 +46,14 @@
       border: none;
       font-size: 20px;
       cursor: pointer;
+
+      .fa-check {
+        color: green;
+      }
+
+      .fa-times {
+        color: red;
+      }
     }
   }
 }

@@ -21,18 +21,27 @@ export default class Library extends React.Component {
   }
 
   render() {
+    const {
+      onOpenSidebar,
+      onCloseSidebar,
+      onOpenPopUp,
+      isMenuActive,
+      recipes
+    } = this.props;
+
     return (
       <div className="library">
-        <div className="header" onClick={this.handleClickOpenSidebar}>
+        <div className="header" onClick={onOpenSidebar}>
           <i className="fas fa-bars"></i>
           <span>Library</span>
         </div>
         <Sidebar
-          isMenuActive={this.state.isMenuActive}
-          onCloseSidebar={this.handleClickCloseSidebar}
+          isMenuActive={isMenuActive}
+          onCloseSidebar={onCloseSidebar}
+          onOpenPopUp={onOpenPopUp}
         />
         <div className="list">
-          {this.props.recipes.map((recipe) => {
+          {recipes.map((recipe) => {
             const onClick = () => this.props.onClick(recipe.id);
             return (
               <div key={recipe.id} className="item" onClick={onClick}>

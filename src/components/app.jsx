@@ -4,12 +4,15 @@ import Library from './library';
 import Recipe from './recipe';
 import PopUp from './popup';
 
+// TODO:
+// 1. height of recipe page
+
 export default class App extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      recipeId: null,
+      recipeId: 1,
       recipes: [
         { id: 1,
           name: 'Lasagne',
@@ -29,7 +32,9 @@ export default class App extends React.Component {
       ],
       isEditMode: false,
       isMenuActive: false,
-      popUp: null
+
+      popUp: null,
+      value: ''
     }
   }
 
@@ -43,39 +48,43 @@ export default class App extends React.Component {
     this.setState({ recipeId: null, isEditMode: false });
   }
 
-  handleOpenPopUp = () => {
-    this.setState({ popUp });
+  // popup
+  handleOpenPopUp = (popUp) => {
+    this.setState({ popUp, isMenuActive: false })
   }
 
-  // handleClickAdd = () => {
-  //   this.setState({ isInputVisible: true });
-  // }
+  handleClickAdd = () => {
+    const { value, recipes } = this.state;
 
-  // input
-  // handleClickPost = () => {
-  //   const { value, recipes, isInputVisible } = this.state;
-  //   const isRecipeExist = recipes.find((recipe) => recipe.name === value);
-  //
-  //   if (value && value.trim() && !isRecipeExist) {
-  //     const newRecipe = {
-  //       id: +new Date(),
-  //       name: value,
-  //       ingredients: [],
-  //       procedure: []
-  //     }
-  //     const newRecipes = recipes.concat(newRecipe);
-  //
-  //     return this.setState({ recipes: newRecipes, isInputVisible: false })
-  //   }
-  //
-  //   if (!value && !value.trim()) {
-  //     alert('enter something!')
-  //   }
-  //
-  //   if (isRecipeExist) {
-  //     alert('exist!')
-  //   }
-  // }
+    if (value && value.trim()) {
+      const newRecipe = {
+        id: +new Date(),
+        name: value,
+        ingredients: [],
+        procedure: []
+      }
+      const newRecipes = recipes.concat(newRecipe);
+
+      return this.setState({ recipes: newRecipes, popUp: null, value: '' })
+    }
+  }
+
+  handleChangeValue = (e) => {
+    this.setState({ value: e.target.value })
+  }
+
+  handleClickCancel = () => {
+    this.setState({ popUp: null, value: '' })
+  }
+
+  // sidebar
+  handleClickOpenSidebar = () => {
+    this.setState({ isMenuActive: true })
+  }
+
+  handleClickCloseSidebar = () => {
+    this.setState({ isMenuActive: false })
+  }
 
   renderPage = (condition) => {
     const {
@@ -102,17 +111,33 @@ export default class App extends React.Component {
           recipes={recipes}
           onClick={this.handleClickItem}
           onOpenPopUp={this.handleOpenPopUp}
+          onOpenSidebar={this.handleClickOpenSidebar}
+          onCloseSidebar={this.handleClickCloseSidebar}
         />
       )
     }
   }
 
   render() {
-    const { recipeId, recipes, isEditMode, isMenuActive, popUp } = this.state;
+    const {
+      recipeId,
+      recipes,
+      isEditMode,
+      isMenuActive,
+      popUp,
+      value
+    } = this.state;
 
     return (
       <div className="recipes">
-        <PopUp />
+        {popUp && (
+            <PopUp
+              value={value}
+              onAdd={this.handleClickAdd}
+              onCancel={this.handleClickCancel}
+              onChange={this.handleChangeValue}
+            />
+          )}
         {this.renderPage(recipeId)}
       </div>
     );

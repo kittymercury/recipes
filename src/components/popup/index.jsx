@@ -1,31 +1,27 @@
 import React from 'react';
-import TextareaAutosize from 'react-textarea-autosize';
 
 import './styles.scss';
 
 export default class PopUp extends React.Component {
-  handleChangeNewRecipe = (e) => {
-    this.setState({ e: e.target.value })
-  }
-
   render() {
-
+    const { onCancel, onAdd, onChange, value } = this.props;
     return (
       <div className="pop-up">
         <div>
           <i className="far fa-folder"></i>
-          <TextareaAutosize
+          <input
             autoFocus
+            value={value}
             id="new-recipe"
             name="new-recipe"
-            onChange={this.handleChangeNewRecipe}
+            onChange={onChange}
           />
         </div>
         <div>
-          <button className="add">
+          <button className="add" onClick={onAdd}>
             <i className="fas fa-check"></i>
           </button>
-          <button className="cancel">
+          <button className="cancel" onClick={onCancel}>
             <i className="fas fa-times"></i>
           </button>
         </div>

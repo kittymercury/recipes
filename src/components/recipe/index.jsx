@@ -149,8 +149,10 @@ export default class Recipe extends React.Component {
     return (
       <div className="recipe">
         {this.renderControl(isEditMode)}
-        {this.renderTitle(isEditMode)}
-        {this.renderContent(isEditMode)}
+        <div className="content">
+          {this.renderTitle(isEditMode)}
+          {this.renderContent(isEditMode)}
+        </div>
       </div>
     );
   }
