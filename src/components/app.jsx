@@ -12,7 +12,7 @@ export default class App extends React.Component {
     super(props);
 
     this.state = {
-      recipeId: 1,
+      recipeId: null,
       recipes: [
         { id: 1,
           name: 'Lasagne',
@@ -31,7 +31,7 @@ export default class App extends React.Component {
         }
       ],
       isEditMode: false,
-      isMenuActive: false,
+      isMenuActive: true,
 
       popUp: null,
       value: ''
