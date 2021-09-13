@@ -30,11 +30,14 @@ export default class App extends React.Component {
           procedure: ['roast', 'grind', 'mix']
         }
       ],
+      value: '',
+      popUp: null,
+
       isEditMode: false,
       isMenuActive: true,
 
-      popUp: null,
-      value: ''
+      fontSize: '15',
+      view: 'list'
     }
   }
 

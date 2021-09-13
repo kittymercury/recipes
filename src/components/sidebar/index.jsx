@@ -35,28 +35,51 @@ export default class Sidebar extends React.Component {
             <div className={`menu-item ${activeItem === 'edit' ? 'active-item' : ''}`}>
               <div className="name" onClick={() => this.handleClickItem('edit')}>
                 <i className="fas fa-pen"></i>
-                <span>Edit</span>
+                <span>Edit items</span>
                 <i className="fas fa-angle-right"></i>
               </div>
               <div className="submenu">
-                <div className="submenu-item">Submenu item 1</div>
-                <div className="submenu-item">Submenu item 2</div>
+                <div className="submenu-item">Remove</div>
+                <div className="submenu-item">Rename</div>
               </div>
             </div>
-            <div className={`menu-item ${activeItem === 'view' ? 'active-item' : ''}`}>
-              <div className="name" onClick={() => this.handleClickItem('view')}>
+            <div className={`menu-item ${activeItem === 'appearance' ? 'active-item' : ''}`}>
+              <div className="name" onClick={() => this.handleClickItem('appearance')}>
                 <i className="far fa-eye"></i>
-                <span>View</span>
+                <span>Appearance</span>
                 <i className="fas fa-angle-right"></i>
               </div>
               <div className="submenu">
-                <div className="submenu-item">Submenu item 1</div>
-                <div className="submenu-item">Submenu item 2</div>
+                <div className="submenu-item with-dropdown">
+                  <span>View</span>
+                  <i className="fas fa-angle-down"></i>
+                </div>
+                <div className="submenu-item dropdown">
+                  <i className="fas fa-list"></i>
+                  <span>List</span>
+                </div>
+                <div className="submenu-item dropdown">
+                  <i className="fas fa-th-large"></i>
+                  <span>Gallery</span>
+                </div>
+                <div className="submenu-item with-dropdown">
+                  <span>Font size</span>
+                  <i className="fas fa-angle-down"></i>
+                </div>
+                <div className="submenu-item dropdown">
+                  <span>Small</span>
+                </div>
+                <div className="submenu-item dropdown">
+                  <span>Medium</span>
+                  </div>
+                <div className="submenu-item dropdown">
+                  <span>Large</span>
+                </div>
               </div>
             </div>
           </div>
         </div>
-        </div>
+      </div>
     )
   }
 };
