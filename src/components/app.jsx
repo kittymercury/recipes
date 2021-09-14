@@ -3,9 +3,14 @@ import React from 'react';
 import Library from './library';
 import Recipe from './recipe';
 import PopUp from './popup';
+import Sidebar from './sidebar';
 
 // TODO:
-// 1. height of recipe page
+// 1. height of recipe page +
+// 2. height of library page with sidebar active
+// 3. 1 handler for edit recipe and library
+// 4. check state of library, improve it
+// 5. improve all styles on library page
 
 export default class App extends React.Component {
   constructor(props) {
@@ -28,16 +33,43 @@ export default class App extends React.Component {
           name: 'Peanut butter',
           ingredients: ['peanuts', 'honey', 'salt'],
           procedure: ['roast', 'grind', 'mix']
-        }
+        },
+        { id: 4,
+          name: 'Walnut butter',
+          ingredients: ['walnuts', 'honey', 'salt'],
+          procedure: ['roast', 'grind', 'mix']
+        },
+        { id: 5,
+          name: 'Almond butter',
+          ingredients: ['almonds', 'honey', 'salt'],
+          procedure: ['roast', 'grind', 'mix']
+        },
+        { id: 6,
+          name: 'Hazelnut butter',
+          ingredients: ['hazelnuts', 'honey', 'salt'],
+          procedure: ['roast', 'grind', 'mix']
+        },
+        { id: 7,
+          name: 'Cashew butter',
+          ingredients: ['cashews', 'honey', 'salt'],
+          procedure: ['roast', 'grind', 'mix']
+        },
+        { id: 8,
+          name: 'Pistachio butter',
+          ingredients: ['pistachios', 'honey', 'salt'],
+          procedure: ['roast', 'grind', 'mix']
+        },
       ],
       value: '',
       popUp: null,
 
       isEditMode: false,
       isMenuActive: true,
+      isDeleteMode: false,
+      isRenameMode: true,
 
       fontSize: '15',
-      view: 'list'
+      view: 'column'
     }
   }
 
@@ -89,12 +121,22 @@ export default class App extends React.Component {
     this.setState({ isMenuActive: false })
   }
 
+  handleClickRemove = () => {
+    this.setState({ isDeleteMode: true })
+  }
+
+  handleClickRename = () => {
+    this.setState({ isRenameMode: true })
+  }
+
   renderPage = (condition) => {
     const {
       recipeId,
       recipes,
       isMenuActive,
-      isEditMode
+      isEditMode,
+      isRenameMode,
+      isDeleteMode
     } = this.state;
 
     if (condition) {
@@ -105,18 +147,32 @@ export default class App extends React.Component {
           recipes={recipes}
           recipeId={recipeId}
           isEditMode={isEditMode}
+          isRenameMode={isRenameMode}
+          isDeleteMode={isDeleteMode}
         />
       )
     } else {
       return (
-        <Library
-          isMenuActive={isMenuActive}
-          recipes={recipes}
-          onClick={this.handleClickItem}
-          onOpenPopUp={this.handleOpenPopUp}
-          onOpenSidebar={this.handleClickOpenSidebar}
-          onCloseSidebar={this.handleClickCloseSidebar}
-        />
+        <div className="library-wrapper">
+          <div className="header" onClick={this.handleClickOpenSidebar}>
+            <i className="fas fa-bars"></i>
+            <span>Library</span>
+          </div>
+          <Library
+            recipes={recipes}
+            onClick={this.handleClickItem}
+            isMenuActive={isMenuActive}
+            onOpenPopUp={this.handleOpenPopUp} // ? check
+            onCloseSidebar={this.handleClickCloseSidebar}
+          />
+          <Sidebar
+            isMenuActive={isMenuActive}
+            onOpenPopUp={this.handleOpenPopUp}
+            onCloseSidebar={this.handleClickCloseSidebar}
+            onClickRemove={this.handleClickRemove}
+            onClickRename={this.handleClickRename}
+          />
+        </div>
       )
     }
   }
@@ -124,9 +180,6 @@ export default class App extends React.Component {
   render() {
     const {
       recipeId,
-      recipes,
-      isEditMode,
-      isMenuActive,
       popUp,
       value
     } = this.state;

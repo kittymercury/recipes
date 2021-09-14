@@ -1,7 +1,7 @@
 import React from 'react';
 
 import './styles.scss';
-import Sidebar from '../sidebar';
+// import Sidebar from '../sidebar';
 
 export default class Library extends React.Component {
   constructor(props) {
@@ -11,6 +11,8 @@ export default class Library extends React.Component {
       isMenuActive: false
     }
   }
+
+  // check these 2 handlers and improt to app
 
   handleClickOpenSidebar = () => {
     this.setState({ isMenuActive: true })
@@ -26,20 +28,11 @@ export default class Library extends React.Component {
       onCloseSidebar,
       onOpenPopUp,
       isMenuActive,
-      recipes
+      recipes,
     } = this.props;
 
     return (
       <div className="library">
-        <div className="header" onClick={onOpenSidebar}>
-          <i className="fas fa-bars"></i>
-          <span>Library</span>
-        </div>
-        <Sidebar
-          isMenuActive={isMenuActive}
-          onCloseSidebar={onCloseSidebar}
-          onOpenPopUp={onOpenPopUp}
-        />
         <div className="list">
           {recipes.map((recipe) => {
             const onClick = () => this.props.onClick(recipe.id);
