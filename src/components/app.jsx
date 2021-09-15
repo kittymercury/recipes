@@ -11,6 +11,7 @@ import Sidebar from './sidebar';
 // 3. 1 handler for edit recipe and library
 // 4. check state of library, improve it
 // 5. improve all styles on library page
+// 6. scroll only sidebar if it is opened
 
 export default class App extends React.Component {
   constructor(props) {
@@ -153,7 +154,7 @@ export default class App extends React.Component {
       )
     } else {
       return (
-        <div className="library-wrapper">
+        <div className="library">
           <div className="header" onClick={this.handleClickOpenSidebar}>
             <i className="fas fa-bars"></i>
             <span>Library</span>
@@ -161,9 +162,6 @@ export default class App extends React.Component {
           <Library
             recipes={recipes}
             onClick={this.handleClickItem}
-            isMenuActive={isMenuActive}
-            onOpenPopUp={this.handleOpenPopUp} // ? check
-            onCloseSidebar={this.handleClickCloseSidebar}
           />
           <Sidebar
             isMenuActive={isMenuActive}
