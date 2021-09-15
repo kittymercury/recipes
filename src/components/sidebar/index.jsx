@@ -82,6 +82,13 @@ export default class Sidebar extends React.Component {
                 </div>
 
                 <div className="submenu-item with-dropdown">
+                  <span>Sort</span>
+                  <i className="fas fa-angle-down"></i>
+                </div>
+                <div className="submenu-item dropdown">From new to old</div>
+                <div className="submenu-item dropdown">From old to new</div>
+
+                <div className="submenu-item with-dropdown">
                   <span>Font size</span>
                   <i className="fas fa-angle-down"></i>
                 </div>

@@ -4,9 +4,9 @@ import './styles.scss';
 
 export default class PopUp extends React.Component {
   render() {
-    const { onCancel, onAdd, onChange, value } = this.props;
+    const { onCancel, onAdd, onChange, value, onKeyUp } = this.props;
     return (
-      <div className="pop-up">
+      <div className="pop-up" onKeyUp={onKeyUp}>
         <div>
           <i className="far fa-folder"></i>
           <input

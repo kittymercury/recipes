@@ -17,6 +17,14 @@ rgba(149,0,255,1) 87%,
 rgba(187,0,243,1) 93%,
 rgba(255,0,228,1) 100%);
 
+.sidebar-wrapper {
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  z-index: 25;
+  transition: all .3s ease-in-out 0s;
+}
+
 .sidebar-wrapper .overlay {
   width: 100%;
   opacity: 0;
