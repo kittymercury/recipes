@@ -72,12 +72,13 @@ export default class App extends React.Component {
       popUp: null,
 
       isEditMode: false,
-      isMenuActive: true,
+      isSidebarActive: true,
       isDeleteMode: false,
       isRenameMode: true,
 
       fontSize: '15',
-      view: 'column-reverse'
+      view: 'list',
+      order: 'newest-to-oldest'
     }
   }
 
@@ -93,7 +94,7 @@ export default class App extends React.Component {
 
   // popup
   handleOpenPopUp = (popUp) => {
-    this.setState({ popUp, isMenuActive: false })
+    this.setState({ popUp, isSidebarActive: false })
   }
 
   handleClickAdd = () => {
@@ -134,13 +135,14 @@ export default class App extends React.Component {
     }
   }
 
+
   // sidebar
   handleClickOpenSidebar = () => {
-    this.setState({ isMenuActive: true })
+    this.setState({ isSidebarActive: true })
   }
 
   handleClickCloseSidebar = () => {
-    this.setState({ isMenuActive: false })
+    this.setState({ isSidebarActive: false })
   }
 
   handleClickRemove = () => {
@@ -151,7 +153,11 @@ export default class App extends React.Component {
     this.setState({ isRenameMode: true })
   }
 
+  handleClickChangeView = (activeView) => {
+    this.setState({ view: activeView })
+  }
 
+// render content
 
   renderPage = (condition) => {
     if (condition) {
@@ -187,7 +193,15 @@ export default class App extends React.Component {
   }
 
   render() {
-    const { recipeId, popUp, value, isMenuActive } = this.state;
+    const {
+      recipeId,
+      popUp,
+      value,
+      isSidebarActive,
+      fontSize,
+      view,
+      order
+    } = this.state;
 
     return (
       <div className="recipes">
@@ -200,13 +214,17 @@ export default class App extends React.Component {
               onKeyUp={this.handlePressKey}
             />
           )}
-        {isMenuActive && (
+        {isSidebarActive && (
           <Sidebar
-            isMenuActive={isMenuActive}
+            view={view}
+            order={order}
+            fontSize={fontSize}
+            isSidebarActive={isSidebarActive}
             onOpenPopUp={this.handleOpenPopUp}
             onCloseSidebar={this.handleClickCloseSidebar}
             onClickRemove={this.handleClickRemove}
             onClickRename={this.handleClickRename}
+            onClickChangeView={this.handleClickChangeView}
           />
         )}
         {this.renderPage(recipeId)}

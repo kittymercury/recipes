@@ -6,25 +6,37 @@ export default class Sidebar extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { activeItem: null };
+    this.state = {
+      dropdownMenu: 'appearance'
+    }
   }
 
-  handleClickItem = (id) => {
-    this.setState({ activeItem: (id === this.state.activeItem) ? null : id });
+  handleClickDropdown = (id) => {
+    this.setState({ dropdownMenu: (id === this.state.dropdownMenu) ? null : id });
+  }
+
+  renderCheck = (state, prop) => {
+    if (state === prop) {
+      return <i className="fas fa-check"></i>
+    }
   }
 
   render() {
     const {
-      isMenuActive,
+      view,
+      order,
+      fontSize,
+      isSidebarActive,
       onCloseSidebar,
       onOpenPopUp,
       onClickRemove,
-      onClickRename
+      onClickRename,
+      onClickChangeView
     } = this.props;
-    const { activeItem } = this.state;
+    const { dropdownMenu } = this.state;
 
     return (
-      <div className={`sidebar-wrapper ${isMenuActive ? 'active' : ''}`}>
+      <div className={`sidebar-wrapper ${isSidebarActive ? 'active' : ''}`}>
         <div className="overlay" onClick={onCloseSidebar}></div>
         <div className="sidebar">
 
@@ -43,9 +55,9 @@ export default class Sidebar extends React.Component {
             </div>
 
 
-            <div className={`menu-item ${activeItem === 'edit-items' ? 'active-item' : ''}`}>
+            <div className={`menu-item ${dropdownMenu === 'edit-items' ? 'active-item' : ''}`}>
 
-              <div className="name" onClick={() => this.handleClickItem('edit-items')}>
+              <div className="name" onClick={() => this.handleClickDropdown('edit-items')}>
                 <i className="fas fa-pen"></i>
                 <span>Edit items</span>
                 <i className="fas fa-angle-right"></i>
@@ -59,34 +71,44 @@ export default class Sidebar extends React.Component {
             </div>
 
 
-            <div className={`menu-item ${activeItem === 'appearance' ? 'active-item' : ''}`}>
+            <div className={`menu-item ${dropdownMenu === 'appearance' ? 'active-item' : ''}`}>
 
-              <div className="name" onClick={() => this.handleClickItem('appearance')}>
+              <div className="name" onClick={() => this.handleClickDropdown('appearance')}>
                 <i className="far fa-eye"></i>
                 <span>Appearance</span>
                 <i className="fas fa-angle-right"></i>
               </div>
+
+
+                 {/* WORK HERE */}
 
               <div className="submenu">
                 <div className="submenu-item with-dropdown">
                   <span>View</span>
                   <i className="fas fa-angle-down"></i>
                 </div>
-                <div className="submenu-item dropdown">
+
+                <div className={`submenu-item dropdown ${view === 'list' ? 'active-view' : ''}`} onClick={() => onClickChangeView('list')}>
                   <i className="fas fa-list"></i>
                   <span>List</span>
+                  {this.renderCheck(view, 'list')}
                 </div>
-                <div className="submenu-item dropdown">
+
+                <div className={`submenu-item dropdown ${view === 'gallery' ? 'active-view' : ''}`} onClick={() => onClickChangeView('gallery')}>
                   <i className="fas fa-th-large"></i>
                   <span>Gallery</span>
+                  {this.renderCheck(view, 'gallery')}
                 </div>
+
+
+                {/* ------------------------------- */}
 
                 <div className="submenu-item with-dropdown">
                   <span>Sort</span>
                   <i className="fas fa-angle-down"></i>
                 </div>
-                <div className="submenu-item dropdown">From new to old</div>
-                <div className="submenu-item dropdown">From old to new</div>
+                <div className="submenu-item dropdown">Newest to oldest</div>
+                <div className="submenu-item dropdown">Oldest to newest</div>
 
                 <div className="submenu-item with-dropdown">
                   <span>Font size</span>
