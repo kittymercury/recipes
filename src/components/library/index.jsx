@@ -4,8 +4,10 @@ import './styles.scss';
 
 export default class Library extends React.Component {
   render() {
+    const { view } = this.props;
+
     return (
-      <div className="list">
+      <div className={`recipes ${view}`}>
         {this.props.recipes.map((recipe) => {
           const onClick = () => this.props.onClick(recipe.id);
           return (

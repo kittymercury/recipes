@@ -204,7 +204,7 @@ export default class App extends React.Component {
     } = this.state;
 
     return (
-      <div className="recipes">
+      <div className="app">
         {popUp && (
             <PopUp
               value={value}
