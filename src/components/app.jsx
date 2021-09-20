@@ -78,7 +78,7 @@ export default class App extends React.Component {
 
       fontSize: '15',
       view: 'list',
-      order: 'newest-to-oldest'
+      order: 'new-first'
     }
   }
 
@@ -157,6 +157,10 @@ export default class App extends React.Component {
     this.setState({ view: activeView })
   }
 
+  handleClickChangeOrder = (activeOrder) => {
+    this.setState({ order: activeOrder })
+  }
+
 // render content
 
   renderPage = (condition) => {
@@ -172,7 +176,7 @@ export default class App extends React.Component {
         />
       )
     } else {
-      const { recipes, isRenameMode, isDeleteMode, view } = this.state;
+      const { recipes, isRenameMode, isDeleteMode, view, order } = this.state;
 
       return (
         <div className="library">
@@ -181,9 +185,10 @@ export default class App extends React.Component {
             <span>Library</span>
           </div>
           <Library
-            view={view}
             recipes={recipes}
-            onClick={this.handleClickItem}
+            view={view}
+            order={order}
+            onClickItem={this.handleClickItem}
             isRenameMode={isRenameMode}
             isDeleteMode={isDeleteMode}
           />
@@ -225,6 +230,7 @@ export default class App extends React.Component {
             onClickRemove={this.handleClickRemove}
             onClickRename={this.handleClickRename}
             onClickChangeView={this.handleClickChangeView}
+            onClickChangeOrder={this.handleClickChangeOrder}
           />
         )}
         {this.renderPage(recipeId)}

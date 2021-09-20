@@ -31,7 +31,8 @@ export default class Sidebar extends React.Component {
       onOpenPopUp,
       onClickRemove,
       onClickRename,
-      onClickChangeView
+      onClickChangeView,
+      onClickChangeOrder
     } = this.props;
     const { dropdownMenu } = this.state;
 
@@ -72,43 +73,48 @@ export default class Sidebar extends React.Component {
 
 
             <div className={`menu-item ${dropdownMenu === 'appearance' ? 'active-item' : ''}`}>
-
               <div className="name" onClick={() => this.handleClickDropdown('appearance')}>
                 <i className="far fa-eye"></i>
                 <span>Appearance</span>
                 <i className="fas fa-angle-right"></i>
               </div>
-
-
-                 {/* WORK HERE */}
-
               <div className="submenu">
                 <div className="submenu-item with-dropdown">
                   <span>View</span>
                   <i className="fas fa-angle-down"></i>
                 </div>
-
-                <div className={`submenu-item dropdown ${view === 'list' ? 'active-view' : ''}`} onClick={() => onClickChangeView('list')}>
+                <div className="submenu-item dropdown" onClick={() => onClickChangeView('list')}>
                   <i className="fas fa-list"></i>
                   <span>List</span>
                   {this.renderCheck(view, 'list')}
                 </div>
-
-                <div className={`submenu-item dropdown ${view === 'gallery' ? 'active-view' : ''}`} onClick={() => onClickChangeView('gallery')}>
+                <div className="submenu-item dropdown" onClick={() => onClickChangeView('gallery')}>
                   <i className="fas fa-th-large"></i>
                   <span>Gallery</span>
                   {this.renderCheck(view, 'gallery')}
                 </div>
 
 
-                {/* ------------------------------- */}
+                {/* WORK HERE RN */}
 
                 <div className="submenu-item with-dropdown">
                   <span>Sort</span>
                   <i className="fas fa-angle-down"></i>
                 </div>
-                <div className="submenu-item dropdown">Newest to oldest</div>
-                <div className="submenu-item dropdown">Oldest to newest</div>
+
+                <div className="submenu-item dropdown" onClick={() => onClickChangeOrder('new-first')}>
+                  <span>New first</span>
+                  {this.renderCheck(order, 'new-first')}
+                </div>
+
+                <div className="submenu-item dropdown" onClick={() => onClickChangeOrder('old-first')}>
+                  <span>Old first</span>
+                  {this.renderCheck(order, 'old-first')}
+                </div>
+
+                {/* --------------------------- */}
+
+
 
                 <div className="submenu-item with-dropdown">
                   <span>Font size</span>
