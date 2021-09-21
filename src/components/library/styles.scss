@@ -16,7 +16,6 @@
   }
 
   .header {
-    height: 60px;
     width: 100%;
     color: white;
     cursor: pointer;
@@ -24,15 +23,16 @@
     z-index: 10;
     position: fixed;
 
+    display: flex;
+    align-items: center;
+
     span {
       padding: 10px;
-      font-size: 25px;
       font-weight: bold;
     }
 
     .fas.fa-bars {
       padding: 22px;
-      font-size: 18px;
     }
   }
 }
@@ -40,12 +40,10 @@
 .item .icon .far {
   margin-right: 8px;
   padding: 3px;
-  font-size: 35px;
 }
 
 .recipes {
   margin-top: 60px;
-  font-size: 1rem;
   padding: 10px 20px;
   position: relative;
   z-index: 9;
@@ -55,10 +53,6 @@
     margin: 10px;
     padding: 10px;
     cursor: pointer;
-
-    .name {
-      font-size: 20px;
-    }
   }
 }
 
@@ -66,7 +60,7 @@
 
 .recipes.list {
   display: flex;
-  // flex-direction: column-reverse;
+
   &.new-first {
     flex-direction: column-reverse;
   }
@@ -86,7 +80,6 @@
 // styles for gallery view
 .recipes.gallery {
   display: flex;
-  // flex-direction: row-reverse;
   flex-wrap: wrap;
   justify-content: flex-start;
 

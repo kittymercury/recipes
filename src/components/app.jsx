@@ -13,12 +13,15 @@ import Sidebar from './sidebar';
 // 4. check state of library, improve it +
 // 9. add enter and escape for popup +
 // 8. go to new recipe after add +
+// 11. order from new to old ... in state +
+// 10. reverse items order in library +
+// 12. add check symbol on active appearance state in submenu +
 // 3. 1 handler for edit recipe and library
-// 7. smooth appear of sidebar
 // 9. refactor css and jsx in recipe component
-// 10. reverse items order in library
-// 11. order from new to old ... in state
-// 12. add check symbol on active appearance state in submenu
+// 7. smooth appear of sidebar
+// 13. ability to change font-size
+// 14. refactor Sidebar
+// 15. fix rendering order while gallery view
 
 export default class App extends React.Component {
   constructor(props) {
@@ -76,7 +79,7 @@ export default class App extends React.Component {
       isDeleteMode: false,
       isRenameMode: true,
 
-      fontSize: '15',
+      fontSize: 'medium',
       view: 'list',
       order: 'new-first'
     }
@@ -145,14 +148,6 @@ export default class App extends React.Component {
     this.setState({ isSidebarActive: false })
   }
 
-  handleClickRemove = () => {
-    this.setState({ isDeleteMode: true })
-  }
-
-  handleClickRename = () => {
-    this.setState({ isRenameMode: true })
-  }
-
   handleClickChangeView = (activeView) => {
     this.setState({ view: activeView })
   }
@@ -160,6 +155,18 @@ export default class App extends React.Component {
   handleClickChangeOrder = (activeOrder) => {
     this.setState({ order: activeOrder })
   }
+
+  handleClickChangeFontSize = (activeSize) => {
+    this.setState({ fontSize: activeSize })
+  }
+
+  // handleClickRemove = () => {
+  //   this.setState({ isDeleteMode: true })
+  // }
+  //
+  // handleClickRename = () => {
+  //   this.setState({ isRenameMode: true })
+  // }
 
 // render content
 
@@ -188,7 +195,7 @@ export default class App extends React.Component {
             recipes={recipes}
             view={view}
             order={order}
-            onClickItem={this.handleClickItem}
+            onClickRecipe={this.handleClickItem}
             isRenameMode={isRenameMode}
             isDeleteMode={isDeleteMode}
           />
@@ -209,7 +216,7 @@ export default class App extends React.Component {
     } = this.state;
 
     return (
-      <div className="app">
+      <div className={`app ${fontSize}`}>
         {popUp && (
             <PopUp
               value={value}
@@ -231,6 +238,7 @@ export default class App extends React.Component {
             onClickRename={this.handleClickRename}
             onClickChangeView={this.handleClickChangeView}
             onClickChangeOrder={this.handleClickChangeOrder}
+            onClickChangeFontSize={this.handleClickChangeFontSize}
           />
         )}
         {this.renderPage(recipeId)}

@@ -32,7 +32,8 @@ export default class Sidebar extends React.Component {
       onClickRemove,
       onClickRename,
       onClickChangeView,
-      onClickChangeOrder
+      onClickChangeOrder,
+      onClickChangeFontSize
     } = this.props;
     const { dropdownMenu } = this.state;
 
@@ -95,7 +96,6 @@ export default class Sidebar extends React.Component {
                 </div>
 
 
-                {/* WORK HERE RN */}
 
                 <div className="submenu-item with-dropdown">
                   <span>Sort</span>
@@ -112,17 +112,27 @@ export default class Sidebar extends React.Component {
                   {this.renderCheck(order, 'old-first')}
                 </div>
 
-                {/* --------------------------- */}
 
-
+                {/* WORK HERE RN */}
 
                 <div className="submenu-item with-dropdown">
                   <span>Font size</span>
                   <i className="fas fa-angle-down"></i>
                 </div>
-                <div className="submenu-item dropdown">Small</div>
-                <div className="submenu-item dropdown">Medium</div>
-                <div className="submenu-item dropdown">Large</div>
+                <div className="submenu-item dropdown" onClick={() => onClickChangeFontSize('small')}>
+                  <span>Small</span>
+                  {this.renderCheck(fontSize, 'small')}
+                </div>
+                <div className="submenu-item dropdown" onClick={() => onClickChangeFontSize('medium')}>
+                  <span>Medium</span>
+                  {this.renderCheck(fontSize, 'medium')}
+                </div>
+                <div className="submenu-item dropdown" onClick={() => onClickChangeFontSize('large')}>
+                  <span>Large</span>
+                  {this.renderCheck(fontSize, 'large')}
+                </div>
+
+                {/* --------------------------- */}
               </div>
             </div>
           </div>

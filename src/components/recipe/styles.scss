@@ -14,7 +14,6 @@
 
     .title, #title {
       margin: 20px 0;
-      font-size: 26px;
       font-weight: bold;
       text-align: center;
       letter-spacing: 1px;
@@ -56,16 +55,13 @@ label,
 textarea,
 .area-name,
 .container {
-  font-size: 16px;
   letter-spacing: 1px;
-  // z-index: 10;
   color: white;
 }
 
 label,
 .area-name {
   text-align: center;
-  font-size: 17px;
 }
 
 textarea {
@@ -106,15 +102,14 @@ label,
 }
 
 .recipe .control {
-  height: 60px;
   background-color: #0f051b;
 
   display: flex;
   justify-content: space-between;
-  align-items: stretch;
+  align-items: center;
 
   div {
-    height: 60px;
+    // height: 60px;
     width: 60px;
 
     display: flex;
