@@ -7,7 +7,7 @@ export default class Sidebar extends React.Component {
     super(props);
 
     this.state = {
-      dropdownMenu: 'appearance'
+      dropdownMenu: 'edit-items'
     }
   }
 
@@ -66,8 +66,14 @@ export default class Sidebar extends React.Component {
               </div>
 
               <div className="submenu">
-                <div className="submenu-item" onClick={onClickRemove}>Remove</div>
-                <div className="submenu-item" onClick={onClickRename}>Rename</div>
+                <div className="submenu-item" onClick={onClickRemove}>
+                  <i className="fas fa-trash"></i>
+                  <span>Remove</span>
+                </div>
+                <div className="submenu-item" onClick={onClickRename}>
+                  <i className="fas fa-eraser"></i>
+                  <span>Rename</span>
+                </div>
               </div>
 
             </div>

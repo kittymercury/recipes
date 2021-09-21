@@ -16,10 +16,10 @@ import Sidebar from './sidebar';
 // 11. order from new to old ... in state +
 // 10. reverse items order in library +
 // 12. add check symbol on active appearance state in submenu +
+// 13. ability to change font-size +
 // 3. 1 handler for edit recipe and library
 // 9. refactor css and jsx in recipe component
 // 7. smooth appear of sidebar
-// 13. ability to change font-size
 // 14. refactor Sidebar
 // 15. fix rendering order while gallery view
 
@@ -77,7 +77,6 @@ export default class App extends React.Component {
       isEditMode: false,
       isSidebarActive: true,
       isDeleteMode: false,
-      isRenameMode: true,
 
       fontSize: 'medium',
       view: 'list',
@@ -164,9 +163,9 @@ export default class App extends React.Component {
   //   this.setState({ isDeleteMode: true })
   // }
   //
-  // handleClickRename = () => {
-  //   this.setState({ isRenameMode: true })
-  // }
+  handleClickRename = () => {
+    this.setState({ isEditMode: true })
+  }
 
 // render content
 
@@ -183,7 +182,7 @@ export default class App extends React.Component {
         />
       )
     } else {
-      const { recipes, isRenameMode, isDeleteMode, view, order } = this.state;
+      const { recipes, isEditMode, isDeleteMode, view, order } = this.state;
 
       return (
         <div className="library">
@@ -196,7 +195,7 @@ export default class App extends React.Component {
             view={view}
             order={order}
             onClickRecipe={this.handleClickItem}
-            isRenameMode={isRenameMode}
+            isEditMode={isEditMode}
             isDeleteMode={isDeleteMode}
           />
         </div>
