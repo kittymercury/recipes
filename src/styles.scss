@@ -52,6 +52,16 @@ body {
   }
 
   .library {
+    .recipes.list {
+      .item {
+        font-size: 24px;
+      }
+    }
+
+    .recipes.gallery .item {
+      font-size: 22px;
+    }
+
     .header {
       height: 65px;
       font-size: 28px;
@@ -60,11 +70,8 @@ body {
     .far.fa-folder {
       font-size: 45px;
     }
-
-    .item {
-      font-size: 24px;
-    }
   }
+
 
   .fas.fa-bars {
     font-size: 20px;
@@ -127,6 +134,16 @@ body {
   }
 
   .library {
+    .recipes.list {
+      .item {
+        font-size: 21px;
+      }
+    }
+
+    .recipes.gallery .item {
+      font-size: 19px;
+    }
+
     .header {
       height: 60px;
       font-size: 24px;
@@ -134,10 +151,6 @@ body {
 
     .far.fa-folder {
       font-size: 40px;
-    }
-
-    .item {
-      font-size: 21px;
     }
   }
 
@@ -201,6 +214,16 @@ body {
   }
 
   .library {
+    .recipes.list {
+      .item {
+        font-size: 18px;
+      }
+    }
+
+    .recipes.gallery .item {
+      font-size: 17px;
+    }
+
     .header {
       height: 60px;
       font-size: 21px;
@@ -208,10 +231,6 @@ body {
 
     .far.fa-folder {
       font-size: 40px;
-    }
-
-    .item {
-      font-size: 18px;
     }
   }
 

@@ -7,7 +7,7 @@ export default class Sidebar extends React.Component {
     super(props);
 
     this.state = {
-      dropdownMenu: 'edit-items'
+      dropdownMenu: 'appearance'
     }
   }
 
@@ -30,7 +30,6 @@ export default class Sidebar extends React.Component {
       onCloseSidebar,
       onOpenPopUp,
       onClickRemove,
-      onClickRename,
       onClickChangeView,
       onClickChangeOrder,
       onClickChangeFontSize
@@ -52,32 +51,17 @@ export default class Sidebar extends React.Component {
             <div className="menu-item" onClick={onOpenPopUp}>
               <div className="name">
                 <i className="fas fa-plus"></i>
-                <span>New recipe</span>
+                <span>Add recipe</span>
               </div>
             </div>
 
 
-            <div className={`menu-item ${dropdownMenu === 'edit-items' ? 'active-item' : ''}`}>
-
-              <div className="name" onClick={() => this.handleClickDropdown('edit-items')}>
-                <i className="fas fa-pen"></i>
-                <span>Edit items</span>
-                <i className="fas fa-angle-right"></i>
+            <div className="menu-item">
+              <div className="name">
+                <i className="fas fa-trash"></i>
+                <span>Delete recipe</span>
               </div>
-
-              <div className="submenu">
-                <div className="submenu-item" onClick={onClickRemove}>
-                  <i className="fas fa-trash"></i>
-                  <span>Remove</span>
-                </div>
-                <div className="submenu-item" onClick={onClickRename}>
-                  <i className="fas fa-eraser"></i>
-                  <span>Rename</span>
-                </div>
-              </div>
-
             </div>
-
 
             <div className={`menu-item ${dropdownMenu === 'appearance' ? 'active-item' : ''}`}>
               <div className="name" onClick={() => this.handleClickDropdown('appearance')}>

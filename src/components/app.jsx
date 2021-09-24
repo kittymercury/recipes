@@ -22,6 +22,7 @@ import Sidebar from './sidebar';
 // 7. smooth appear of sidebar
 // 14. refactor Sidebar
 // 15. fix rendering order while gallery view
+// 16. make 1 handler for all appearance changes
 
 export default class App extends React.Component {
   constructor(props) {
@@ -75,7 +76,7 @@ export default class App extends React.Component {
       popUp: null,
 
       isEditMode: false,
-      isSidebarActive: true,
+      isSidebarActive: false,
       isDeleteMode: false,
 
       fontSize: 'medium',
@@ -86,7 +87,11 @@ export default class App extends React.Component {
 
   // library
   handleClickItem = (id) => {
-    this.setState({ recipeId: id, isEditMode: false });
+    this.setState({ recipeId: id });
+  }
+
+  handleClickSave = () => {
+
   }
 
   // control
@@ -163,9 +168,6 @@ export default class App extends React.Component {
   //   this.setState({ isDeleteMode: true })
   // }
   //
-  handleClickRename = () => {
-    this.setState({ isEditMode: true })
-  }
 
 // render content
 
@@ -195,7 +197,6 @@ export default class App extends React.Component {
             view={view}
             order={order}
             onClickRecipe={this.handleClickItem}
-            isEditMode={isEditMode}
             isDeleteMode={isDeleteMode}
           />
         </div>

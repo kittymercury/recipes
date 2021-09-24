@@ -13,12 +13,6 @@ export default class Library extends React.Component {
     }
   }
 
-  renderStatic = (condition) => {
-    if (condition) {
-      return ()
-    }
-  }
-
   render() {
     const { recipes, view, order, onClickRecipe } = this.props;
 
