@@ -77,7 +77,8 @@ export default class App extends React.Component {
 
       isEditMode: false,
       isSidebarActive: false,
-      isDeleteMode: false,
+      isDeleteMode: true,
+      isItemChecked: false,
 
       fontSize: 'medium',
       view: 'list',
@@ -88,10 +89,6 @@ export default class App extends React.Component {
   // library
   handleClickItem = (id) => {
     this.setState({ recipeId: id });
-  }
-
-  handleClickSave = () => {
-
   }
 
   // control
@@ -129,7 +126,7 @@ export default class App extends React.Component {
     this.setState({ value: e.target.value })
   }
 
-  handleClickCancel = () => {
+  handleClickCancelAdding = () => {
     this.setState({ popUp: null, value: '' })
   }
 
@@ -164,12 +161,50 @@ export default class App extends React.Component {
     this.setState({ fontSize: activeSize })
   }
 
-  // handleClickRemove = () => {
-  //   this.setState({ isDeleteMode: true })
-  // }
-  //
+  handleClickDelete = () => {
+    this.setState({ isDeleteMode: true })
+  }
+
+  // delete-menu
+  handleClickCancelDeleting = () => {
+    this.setState({ isDeleteMode: false })
+  }
+
+  handleChangeInputCheckbox = (e) => {
+    this.setState({ checkedItems: e.target.checked })
+  }
+
 
 // render content
+
+  renderLibraryHeader = (condition) => {
+    if (condition) {
+      return (
+        <div className="delete-menu">
+          <div className="checkbox-wrapper">
+            <input
+              type="checkbox"
+              value="select-all"
+              id="select-all"
+              onChange={this.handleChangeInputCheckbox}
+            />
+            <label for="select-all">Select all</label>
+            <button className="delete">
+              <i className="fas fa-trash"></i>
+            </button>
+          </div>
+          <button className="cancel" onClick={this.handleClickCancelDeleting}>Cancel</button>
+        </div>
+      )
+    } else {
+      return (
+        <div className="header" onClick={this.handleClickOpenSidebar}>
+          <i className="fas fa-bars"></i>
+          <span>Library</span>
+        </div>
+      )
+    }
+  }
 
   renderPage = (condition) => {
     if (condition) {
@@ -184,14 +219,11 @@ export default class App extends React.Component {
         />
       )
     } else {
-      const { recipes, isEditMode, isDeleteMode, view, order } = this.state;
+      const { recipes, isDeleteMode, view, order } = this.state;
 
       return (
         <div className="library">
-          <div className="header" onClick={this.handleClickOpenSidebar}>
-            <i className="fas fa-bars"></i>
-            <span>Library</span>
-          </div>
+          {this.renderLibraryHeader(isDeleteMode)}
           <Library
             recipes={recipes}
             view={view}
@@ -221,7 +253,7 @@ export default class App extends React.Component {
             <PopUp
               value={value}
               onAdd={this.handleClickAdd}
-              onCancel={this.handleClickCancel}
+              onCancel={this.handleClickCancelAdding}
               onChange={this.handleChangeValue}
               onKeyUp={this.handlePressKey}
             />
@@ -234,8 +266,7 @@ export default class App extends React.Component {
             isSidebarActive={isSidebarActive}
             onOpenPopUp={this.handleOpenPopUp}
             onCloseSidebar={this.handleClickCloseSidebar}
-            onClickRemove={this.handleClickRemove}
-            onClickRename={this.handleClickRename}
+            onClickDelete={this.handleClickDelete}
             onClickChangeView={this.handleClickChangeView}
             onClickChangeOrder={this.handleClickChangeOrder}
             onClickChangeFontSize={this.handleClickChangeFontSize}

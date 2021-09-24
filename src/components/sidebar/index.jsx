@@ -29,7 +29,7 @@ export default class Sidebar extends React.Component {
       isSidebarActive,
       onCloseSidebar,
       onOpenPopUp,
-      onClickRemove,
+      onClickDelete,
       onClickChangeView,
       onClickChangeOrder,
       onClickChangeFontSize
@@ -56,7 +56,7 @@ export default class Sidebar extends React.Component {
             </div>
 
 
-            <div className="menu-item">
+            <div className="menu-item" onClick={onClickDelete}>
               <div className="name">
                 <i className="fas fa-trash"></i>
                 <span>Delete recipe</span>

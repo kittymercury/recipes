@@ -53,7 +53,7 @@ body {
 
   .library {
     .recipes.list {
-      .item {
+      .item, .item-checkbox {
         font-size: 24px;
       }
     }
@@ -62,8 +62,17 @@ body {
       font-size: 22px;
     }
 
-    .header {
+    .header, .delete-menu {
       height: 65px;
+    }
+
+    .delete-menu {
+      div, button {
+        font-size: 21px;
+      }
+    }
+
+    .header {
       font-size: 28px;
     }
 
@@ -135,7 +144,7 @@ body {
 
   .library {
     .recipes.list {
-      .item {
+      .item, .item-checkbox {
         font-size: 21px;
       }
     }
@@ -144,9 +153,18 @@ body {
       font-size: 19px;
     }
 
-    .header {
+    .header, .delete-menu {
       height: 60px;
+    }
+
+    .header {
       font-size: 24px;
+    }
+
+    .delete-menu {
+      div, button {
+        font-size: 17px;
+      }
     }
 
     .far.fa-folder {
@@ -215,7 +233,7 @@ body {
 
   .library {
     .recipes.list {
-      .item {
+      .item, .item-checkbox {
         font-size: 18px;
       }
     }
@@ -224,8 +242,17 @@ body {
       font-size: 17px;
     }
 
-    .header {
+    .header, .delete-menu {
       height: 60px;
+    }
+
+    .delete-menu {
+      div, button {
+        font-size: 15px;
+      }
+    }
+
+    .header {
       font-size: 21px;
     }
 

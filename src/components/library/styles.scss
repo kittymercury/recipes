@@ -15,6 +15,40 @@
     left: 0;
   }
 
+  .delete-menu {
+    width: 100%;
+    color: white;
+    cursor: pointer;
+    background-color: #12071b;
+    z-index: 10;
+    position: fixed;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .checkbox-wrapper {
+      margin-left: 25px;
+
+      label {
+        margin: 0 10px;
+      }
+    }
+
+    button {
+      background: none;
+      font-family: inherit;
+      border: none;
+      color: white;
+      cursor: pointer;
+      padding: 5px 10px;
+
+      &.cancel {
+        margin-right: 15px;
+      }
+    }
+  }
+
   .header {
     width: 100%;
     color: white;
@@ -50,9 +84,13 @@
 
   display: flex;
 
-  .item, input {
+  .item, .item-checkbox {
     margin: 10px;
     cursor: pointer;
+  }
+
+  .item-checkbox input {
+    margin-right: 10px;
   }
 }
 
@@ -69,20 +107,12 @@
     flex-direction: column;
   }
 
-  .item, input {
+  .item, .item-checkbox {
     padding: 10px;
     box-shadow: inset 0 -1px 0px 0px #ffffff21;
 
     display: flex;
     align-items: center;
-  }
-
-  input {
-    background: none;
-    outline: none;
-    color: white;
-    border: none;
-    font-family: 'Crimson Text', serif;
   }
 }
 
