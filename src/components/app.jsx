@@ -34,53 +34,60 @@ export default class App extends React.Component {
         { id: 1,
           name: 'Lasagne',
           ingredients: ['beef 500g', 'cheese 200g', 'bolognese 450g', 'lasagne leaves', 'for bechamel:', 'milk', 'butter', 'muscat nut' ],
-          procedure: [ 'de do de do daaaaaaaa', 'bolognese sauce! i love this sauce sooo much. it is hard to find good bolognese sauce in local stores.. but today i\'ve done it! and now it is waiting for it\'s time to become a part of the masterpiece of art <3' ]
+          procedure: [ 'de do de do daaaaaaaa', 'bolognese sauce! i love this sauce sooo much. it is hard to find good bolognese sauce in local stores.. but today i\'ve done it! and now it is waiting for it\'s time to become a part of the masterpiece of art <3' ],
+          checked: false
         },
         { id: 2,
           name: 'Tuna salad',
           ingredients: ['tuna in oil', 'tomatoes', 'letucce'],
-          procedure: ['eat', 'cry', 'suffer', 'vomit', 'smile', 'relax']
+          procedure: ['eat', 'cry', 'suffer', 'vomit', 'smile', 'relax'],
+          checked: false
         },
         { id: 3,
           name: 'Peanut butter',
           ingredients: ['peanuts', 'honey', 'salt'],
-          procedure: ['roast', 'grind', 'mix']
+          procedure: ['roast', 'grind', 'mix'],
+          checked: false
         },
         { id: 4,
           name: 'Walnut butter',
           ingredients: ['walnuts', 'honey', 'salt'],
-          procedure: ['roast', 'grind', 'mix']
+          procedure: ['roast', 'grind', 'mix'],
+          checked: false
         },
         { id: 5,
           name: 'Almond butter',
           ingredients: ['almonds', 'honey', 'salt'],
-          procedure: ['roast', 'grind', 'mix']
+          procedure: ['roast', 'grind', 'mix'],
+          checked: false
         },
         { id: 6,
           name: 'Hazelnut butter',
           ingredients: ['hazelnuts', 'honey', 'salt'],
-          procedure: ['roast', 'grind', 'mix']
+          procedure: ['roast', 'grind', 'mix'],
+          checked: false
         },
         { id: 7,
           name: 'Cashew butter',
           ingredients: ['cashews', 'honey', 'salt'],
-          procedure: ['roast', 'grind', 'mix']
+          procedure: ['roast', 'grind', 'mix'],
+          checked: false
         },
         { id: 8,
           name: 'Pistachio butter',
           ingredients: ['pistachios', 'honey', 'salt'],
-          procedure: ['roast', 'grind', 'mix']
+          procedure: ['roast', 'grind', 'mix'],
+          checked: false
         },
       ],
       value: '',
       popUp: null,
+      selectedRecipes: [],
 
       isEditMode: false,
       isSidebarActive: false,
-      isDeleteMode: true,
-      isItemChecked: false,
+      isDeleteMode: false,
 
-      fontSize: 'medium',
       view: 'list',
       order: 'new-first'
     }
@@ -89,6 +96,12 @@ export default class App extends React.Component {
   // library
   handleClickItem = (id) => {
     this.setState({ recipeId: id });
+  }
+
+  handleCheckItem = (id, checked) => {
+    console.log(id, checked)
+    const { recipes } = this.state;
+    // const newRecipes =
   }
 
   // control
@@ -149,6 +162,8 @@ export default class App extends React.Component {
     this.setState({ isSidebarActive: false })
   }
 
+  // -------------------------
+
   handleClickChangeView = (activeView) => {
     this.setState({ view: activeView })
   }
@@ -161,17 +176,15 @@ export default class App extends React.Component {
     this.setState({ fontSize: activeSize })
   }
 
+  // --------------------------------
+
   handleClickDelete = () => {
-    this.setState({ isDeleteMode: true })
+    this.setState({ isDeleteMode: true, isSidebarActive: false })
   }
 
   // delete-menu
   handleClickCancelDeleting = () => {
     this.setState({ isDeleteMode: false })
-  }
-
-  handleChangeInputCheckbox = (e) => {
-    this.setState({ checkedItems: e.target.checked })
   }
 
 
@@ -186,9 +199,9 @@ export default class App extends React.Component {
               type="checkbox"
               value="select-all"
               id="select-all"
-              onChange={this.handleChangeInputCheckbox}
+              // onChange={this.handleCheckItem}
             />
-            <label for="select-all">Select all</label>
+            <label htmlFor="select-all">Select all</label>
             <button className="delete">
               <i className="fas fa-trash"></i>
             </button>
@@ -198,9 +211,10 @@ export default class App extends React.Component {
       )
     } else {
       return (
-        <div className="header" onClick={this.handleClickOpenSidebar}>
-          <i className="fas fa-bars"></i>
+        <div className="header">
+          <i className="fas fa-bars" onClick={this.handleClickOpenSidebar}></i>
           <span>Library</span>
+          <i className="fas fa-search"></i>
         </div>
       )
     }
@@ -230,11 +244,16 @@ export default class App extends React.Component {
             order={order}
             onClickRecipe={this.handleClickItem}
             isDeleteMode={isDeleteMode}
+            onCheckRecipe={this.handleCheckItem}
           />
         </div>
       )
     }
   }
+  //
+  // handleClickChangeAppearance = (property, name) => {
+  //   this.setState({ [property]: name })
+  // }
 
   render() {
     const {

@@ -29,7 +29,7 @@ rgba(255,0,228,1) 100%);
   width: 100%;
   opacity: 0;
   transform: scale(0);
-  background: #ff80001a;
+  background: #40404070;
   position: absolute;
   top: 0;
   right: 0;
@@ -53,7 +53,7 @@ rgba(255,0,228,1) 100%);
   overflow-y: auto;
 
   .menu-icon {
-    background-color: #484154;
+    background-color: #c54737;
     color: white;
     cursor: pointer;
 
@@ -61,12 +61,18 @@ rgba(255,0,228,1) 100%);
     align-items: center;
 
     span {
+      font-size: 23px;
       font-weight: bold;
       flex: 1;
     }
 
     i {
-      padding: 20px;
+      height: 60px;
+      width: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 19px;
     }
   }
 }
@@ -91,23 +97,24 @@ rgba(255,0,228,1) 100%);
   .menu-item {
     width: 100%;
     color: black;
-    box-shadow: inset 0 -1px 2px 0px #cca3324d;
+    box-shadow: inset 0 -1px 2px 0px #f4cdbc;
     cursor: pointer;
 
     .name {
+      font-size: 20px;
       padding: 20px 0;
 
       display: flex;
       align-items: center;
 
       &:hover {
-        background-color: #ffdb7633;
+        background-color: #f4d2d38a;
         box-shadow: none;
       }
 
       i {
         margin: 0 20px;
-        color: coral;
+        color: #e56666;
       }
     }
 
@@ -121,6 +128,7 @@ rgba(255,0,228,1) 100%);
       .submenu-item {
         height: 50px;
         padding-left: 50px;
+        font-size: 20px;
         color: black;
         cursor: pointer;
 
@@ -128,16 +136,16 @@ rgba(255,0,228,1) 100%);
         align-items: center;
 
         &:hover {
-          background-color: #ffdb7633;
+          background-color: #f4d2d38a;
         }
 
         i {
           margin: 0 15px 0 10px;
-          color: coral;
+          color: #e56666;
         }
 
         &.with-dropdown {
-          box-shadow: inset 0 -1px 2px 0px #cca3324d;
+          box-shadow: inset 0 -1px 2px 0px #cc32324d;
 
           &:hover {
             background-color: initial;
@@ -162,7 +170,7 @@ rgba(255,0,228,1) 100%);
   }
 
   .name {
-    background-color: #ffdb7673;
+    background-color: #f4d2d3;
   }
 
   .submenu {

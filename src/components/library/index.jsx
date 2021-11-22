@@ -14,15 +14,35 @@ export default class Library extends React.Component {
   }
 
   renderLibrary = (condition) => {
+    const {
+      recipes,
+      view,
+      order,
+      onClickRecipe,
+      onCheckRecipe
+    } = this.props;
+
     if (condition) {
-      const { recipes, view, order, onClickRecipe, isDeleteMode } = this.props;
       return (
         <div className={`recipes list ${order}`}>
           {recipes.map((recipe) => {
             return (
               <div className="item-checkbox" key={recipe.id}>
-                <input type="checkbox" value={recipe.id}/>
+                <input type="checkbox" checked={recipe.checked} onChange={(e) => onCheckRecipe(recipe.id, e.target.checked)}/>
                 <span>{recipe.name}</span>
+              </div>
+            )
+          })}
+        </div>
+      )
+    } else {
+      return (
+        <div className={`recipes ${view} ${order}`}>
+          {recipes.map((recipe) => {
+            return (
+              <div key={recipe.id} className="item" onClick={() => onClickRecipe(recipe.id)}>
+                {this.renderFolderIcon(view === 'gallery')}
+                <div className="name">{recipe.name}</div>
               </div>
             )
           })}
@@ -32,20 +52,10 @@ export default class Library extends React.Component {
   }
 
   render() {
-    const { recipes, view, order, onClickRecipe, isDeleteMode } = this.props;
+    const { isDeleteMode } = this.props;
 
     return (
       <div>
-        {/* <div className={`recipes ${view} ${order}`}>
-          {recipes.map((recipe) => {
-            return (
-              <div key={recipe.id} className="item" onClick={() => onClickRecipe(recipe.id)}>
-                {this.renderFolderIcon(view === 'gallery')}
-                <div className="name">{recipe.name}</div>
-              </div>
-            )
-          })}
-        </div> */}
         {this.renderLibrary(isDeleteMode)}
       </div>
     );

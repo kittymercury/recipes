@@ -53,7 +53,7 @@ export default class Recipe extends React.Component {
     return (
       <div className="control">
         <div className="back" onClick={this.props.clickBack}>
-          <i className="fas fa-arrow-left"></i>
+          <i className="fas fa-chevron-left"></i>
         </div>
         {this.renderButtonEdit(condition)}
       </div>
@@ -70,7 +70,7 @@ export default class Recipe extends React.Component {
     } else {
       return (
         <div className="edit" onClick={this.clickEdit}>
-          <i className="fas fa-pen-fancy"></i>
+          <i className="fas fa-pen"></i>
         </div>
       )
     }
