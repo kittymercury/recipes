@@ -4,23 +4,12 @@ import Library from './library';
 import Recipe from './recipe';
 import PopUp from './popup';
 import Sidebar from './sidebar';
+import InputSearch from './input-search';
 
 // TODO:
-// 1. height of recipe page +
-// 6. scroll only sidebar if it is opened +
-// 5. improve all styles on library page +
-// 2. height of library page with sidebar active +
-// 4. check state of library, improve it +
-// 9. add enter and escape for popup +
-// 8. go to new recipe after add +
-// 11. order from new to old ... in state +
-// 10. reverse items order in library +
-// 12. add check symbol on active appearance state in submenu +
-// 13. ability to change font-size +
 // 3. 1 handler for edit recipe and library
 // 9. refactor css and jsx in recipe component
 // 7. smooth appear of sidebar
-// 14. refactor Sidebar
 // 15. fix rendering order while gallery view
 // 16. make 1 handler for all appearance changes
 
@@ -83,10 +72,12 @@ export default class App extends React.Component {
       value: '',
       popUp: null,
       selectedRecipes: [],
+      inputSearch: '',
 
       isEditMode: false,
       isSidebarActive: false,
       isDeleteMode: false,
+      isSearch: false,
 
       view: 'list',
       order: 'new-first'
@@ -102,6 +93,10 @@ export default class App extends React.Component {
     console.log(id, checked)
     const { recipes } = this.state;
     // const newRecipes =
+  }
+
+  handleChangeInputSearch = (e) => {
+    this.setState({ inputSearch: e.target.value });
   }
 
   // control
@@ -214,7 +209,7 @@ export default class App extends React.Component {
         <div className="header">
           <i className="fas fa-bars" onClick={this.handleClickOpenSidebar}></i>
           <span>Library</span>
-          <i className="fas fa-search"></i>
+          <i className="fas fa-search" onClick={() => this.setState({ isSearch: true })}></i>
         </div>
       )
     }
@@ -233,13 +228,30 @@ export default class App extends React.Component {
         />
       )
     } else {
-      const { recipes, isDeleteMode, view, order } = this.state;
+      const { recipes, isDeleteMode, isSearch, inputSearch, view, order } = this.state;
+
+      let foundRecipes = [];
+      if (isSearch && inputSearch) {
+        recipes.forEach((rec) => {
+          if (rec.name.toLowerCase().includes(inputSearch.toLowerCase())) {
+            foundRecipes.push(rec);
+          }
+        });
+      } else {
+        foundRecipes = recipes;
+      }
 
       return (
         <div className="library">
-          {this.renderLibraryHeader(isDeleteMode)}
+          {isSearch
+            ? <InputSearch
+              onChange={this.handleChangeInputSearch}
+              onCancel={() => this.setState({ isSearch: false, inputSearch: '' })}
+              value={inputSearch}
+            />
+            : this.renderLibraryHeader(isDeleteMode)}
           <Library
-            recipes={recipes}
+            recipes={foundRecipes}
             view={view}
             order={order}
             onClickRecipe={this.handleClickItem}
@@ -250,10 +262,6 @@ export default class App extends React.Component {
       )
     }
   }
-  //
-  // handleClickChangeAppearance = (property, name) => {
-  //   this.setState({ [property]: name })
-  // }
 
   render() {
     const {
