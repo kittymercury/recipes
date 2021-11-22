@@ -76,23 +76,12 @@ export default class App extends React.Component {
 
       isEditMode: false,
       isSidebarActive: false,
-      isDeleteMode: false,
+      isDeleteMode: true,
       isSearch: false,
 
       view: 'list',
       order: 'new-first'
     }
-  }
-
-  // library
-  handleClickItem = (id) => {
-    this.setState({ recipeId: id });
-  }
-
-  handleCheckItem = (id, checked) => {
-    console.log(id, checked)
-    const { recipes } = this.state;
-    // const newRecipes =
   }
 
   handleChangeInputSearch = (e) => {
@@ -107,6 +96,19 @@ export default class App extends React.Component {
   // popup
   handleOpenPopUp = (popUp) => {
     this.setState({ popUp, isSidebarActive: false })
+  }
+
+  handleClickDeleteSelectedItems = () => {
+    const { recipes, selectedRecipes  } = this.state;
+
+    for (let i = 0; i < selectedRecipes.length; i++) {
+      const newRecipes = recipes.filter((r) => r.id !== selectedRecipes[i]);
+      this.setState({
+        recipes: newRecipes,
+        selectedRecipes: [],
+        isDeleteMode: false
+      })
+    }
   }
 
   handleClickAdd = () => {
@@ -167,10 +169,6 @@ export default class App extends React.Component {
     this.setState({ order: activeOrder })
   }
 
-  handleClickChangeFontSize = (activeSize) => {
-    this.setState({ fontSize: activeSize })
-  }
-
   // --------------------------------
 
   handleClickDelete = () => {
@@ -189,18 +187,8 @@ export default class App extends React.Component {
     if (condition) {
       return (
         <div className="delete-menu">
-          <div className="checkbox-wrapper">
-            <input
-              type="checkbox"
-              value="select-all"
-              id="select-all"
-              // onChange={this.handleCheckItem}
-            />
-            <label htmlFor="select-all">Select all</label>
-            <button className="delete">
-              <i className="fas fa-trash"></i>
-            </button>
-          </div>
+          <button className="delete" onClick={() => this.handleClickDeleteSelectedItems()}>Delete</button>
+            <div className="select-all">Delete all</div>
           <button className="cancel" onClick={this.handleClickCancelDeleting}>Cancel</button>
         </div>
       )
@@ -228,7 +216,7 @@ export default class App extends React.Component {
         />
       )
     } else {
-      const { recipes, isDeleteMode, isSearch, inputSearch, view, order } = this.state;
+      const { recipes, isDeleteMode, isSearch, inputSearch, view, order, selectedRecipes } = this.state;
 
       let foundRecipes = [];
       if (isSearch && inputSearch) {
@@ -254,9 +242,9 @@ export default class App extends React.Component {
             recipes={foundRecipes}
             view={view}
             order={order}
+            selectedRecipes={selectedRecipes}
             onClickRecipe={this.handleClickItem}
             isDeleteMode={isDeleteMode}
-            onCheckRecipe={this.handleCheckItem}
           />
         </div>
       )

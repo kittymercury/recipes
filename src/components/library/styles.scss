@@ -5,9 +5,9 @@
 
   .delete-menu {
     width: 100%;
+    height: 60px;
     color: white;
-    cursor: pointer;
-    background-color: #12071b;
+    background-color: #d13030;
     z-index: 10;
     position: fixed;
 
@@ -15,25 +15,15 @@
     align-items: center;
     justify-content: space-between;
 
-    .checkbox-wrapper {
-      margin-left: 25px;
-
-      label {
-        margin: 0 10px;
-      }
-    }
-
-    button {
+    button, .select-all {
       background: none;
       font-family: inherit;
       border: none;
       color: white;
+      font-size: 19px;
+      font-weight: bold;
+      padding: 10px;
       cursor: pointer;
-      padding: 5px 10px;
-
-      &.cancel {
-        margin-right: 15px;
-      }
     }
   }
 
@@ -81,13 +71,36 @@
 
   display: flex;
 
-  .item, .item-checkbox {
+  .item {
     margin-bottom: 5px;
     cursor: pointer;
-  }
 
-  .item-checkbox input {
-    margin-right: 10px;
+    .select {
+      display: inline-block;
+      margin-right: 10px;
+      font-size: 16px;
+      color: red;
+
+      i {
+        display: inline-block;
+
+        &.fas {
+          display: none;
+        }
+      }
+    }
+
+    &.selected {
+      .select {
+        .fas {
+          display: inline-block;
+        }
+
+        .far {
+          display: none;
+        }
+      }
+    }
   }
 }
 
