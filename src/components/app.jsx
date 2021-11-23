@@ -7,8 +7,6 @@ import Sidebar from './sidebar';
 import InputSearch from './input-search';
 
 // TODO:
-// 3. 1 handler for edit recipe and library
-// 9. refactor css and jsx in recipe component
 // 7. smooth appear of sidebar
 // 15. fix rendering order while gallery view
 // 16. make 1 handler for all appearance changes
@@ -24,49 +22,41 @@ export default class App extends React.Component {
           name: 'Lasagne',
           ingredients: ['beef 500g', 'cheese 200g', 'bolognese 450g', 'lasagne leaves', 'for bechamel:', 'milk', 'butter', 'muscat nut' ],
           procedure: [ 'de do de do daaaaaaaa', 'bolognese sauce! i love this sauce sooo much. it is hard to find good bolognese sauce in local stores.. but today i\'ve done it! and now it is waiting for it\'s time to become a part of the masterpiece of art <3' ],
-          checked: false
         },
         { id: 2,
           name: 'Tuna salad',
           ingredients: ['tuna in oil', 'tomatoes', 'letucce'],
-          procedure: ['eat', 'cry', 'suffer', 'vomit', 'smile', 'relax'],
-          checked: false
+          procedure: ['eat', 'smile', 'relax'],
         },
         { id: 3,
           name: 'Peanut butter',
           ingredients: ['peanuts', 'honey', 'salt'],
           procedure: ['roast', 'grind', 'mix'],
-          checked: false
         },
         { id: 4,
           name: 'Walnut butter',
           ingredients: ['walnuts', 'honey', 'salt'],
           procedure: ['roast', 'grind', 'mix'],
-          checked: false
         },
         { id: 5,
           name: 'Almond butter',
           ingredients: ['almonds', 'honey', 'salt'],
           procedure: ['roast', 'grind', 'mix'],
-          checked: false
         },
         { id: 6,
           name: 'Hazelnut butter',
           ingredients: ['hazelnuts', 'honey', 'salt'],
           procedure: ['roast', 'grind', 'mix'],
-          checked: false
         },
         { id: 7,
           name: 'Cashew butter',
           ingredients: ['cashews', 'honey', 'salt'],
           procedure: ['roast', 'grind', 'mix'],
-          checked: false
         },
         { id: 8,
           name: 'Pistachio butter',
           ingredients: ['pistachios', 'honey', 'salt'],
           procedure: ['roast', 'grind', 'mix'],
-          checked: false
         },
       ],
       value: '',
@@ -76,7 +66,7 @@ export default class App extends React.Component {
 
       isEditMode: false,
       isSidebarActive: false,
-      isDeleteMode: true,
+      isDeleteMode: false,
       isSearch: false,
 
       view: 'list',
@@ -178,6 +168,32 @@ export default class App extends React.Component {
   // delete-menu
   handleClickCancelDeleting = () => {
     this.setState({ isDeleteMode: false })
+  }
+
+  handleClickItem = (id) => {
+    const { isDeleteMode, recipes, selectedRecipes } = this.state;
+
+    if (!isDeleteMode) {
+      this.setState({ recipeId: id });
+    }
+
+    if (isDeleteMode) {
+      const rcp = recipes.find((r) => r.id === id);
+      const $recipe = document.getElementById(`${id}`);
+      console.log({id: id, recipe: $recipe});
+      const isSelected = selectedRecipes.includes(id);
+
+      if (isSelected) {
+        $recipe.classList.toggle('selected');
+        const filteredSelectedRecipes = selectedRecipes.filter((id) => id !== rcp.id);
+        this.setState({ selectedRecipes: filteredSelectedRecipes })
+      }
+
+      if (!isSelected) {
+        $recipe.classList.toggle('selected');
+        this.setState({ selectedRecipes: selectedRecipes.concat(rcp.id) })
+      }
+    }
   }
 
 
